@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: SDK-FOR-NODE-JS
+  host: SDK-FOR-NODE-JS
+  disk_quota: 1024M
+  services:
+  - Weather Company Data-qo
