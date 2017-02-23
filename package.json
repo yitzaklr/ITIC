@@ -13,6 +13,7 @@
 	},
 	"repository": {},
 	"engines": {
-		"node": "4.x"
+		"node": "4.x",
+		"npm": "4.2.x"
 	} 
 }
