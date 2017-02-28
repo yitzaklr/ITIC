@@ -1,4 +1,4 @@
-/*eslint-env node*/
+*eslint-env node*/
 
 //------------------------------------------------------------------------------
 // node.js starter application for Bluemix
@@ -37,7 +37,8 @@ app.get('/process_get', function (req, res) {
         json: true
       },
       function (error, response, body) {
-       console.log(body)
+         var data=body;
+         JSON.parse(data);
       });
 })
 
