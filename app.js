@@ -9,6 +9,7 @@
 var express = require('express');
   request = require('request'),
 
+
 _ = require('lodash');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -38,7 +39,7 @@ app.get('/process_get', function (req, res) {
       },
       function (error, response, body) {
          console.log("parsing");
-         json.parse(body);
+         JSON.parse(body);
       });
 })
 
