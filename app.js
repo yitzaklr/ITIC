@@ -39,7 +39,7 @@ app.get('/process_get', function (req, res) {
       },
       function (error, response, body) {
          console.log("parsing");
-         var qobject = JSON.parse(body);
+         var qobject = json.parse(body);
       });
 })
 
