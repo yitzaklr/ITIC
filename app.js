@@ -37,8 +37,7 @@ app.get('/process_get', function (req, res) {
         json: true
       },
       function (error, response, body) {
-         var data=body;
-         JSON.parse(data);
+         JSON.parse(body);
       });
 })
 
