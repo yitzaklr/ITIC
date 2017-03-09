@@ -46,7 +46,7 @@ app.get('/process_get', function (req, res) {
 //Function to call API callURLs
 function callAPI()
 {
-	 var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/40.7831/73.9712/forecast/hourly/48hour.json?units=m&language=en-US";
+	 var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/40.7831/-73.9712/forecast/hourly/48hour.json?units=m&language=en-US";
 
       request.get(callURL, {
         json: true
