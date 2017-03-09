@@ -9,7 +9,6 @@
 var express = require('express');
   request = require('request'),
 
-
 _ = require('lodash');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -30,19 +29,26 @@ app.get('/process_get', function (req, res) {
    response = {
       latitude:req.query.latitude,
       longitude:req.query.longitude
+      //add a text box for setting the timer
      };
+	callAPI();
+	setTimeout(timer, 7200000);
+      
+  
+})
 
-      var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/"+response.latitude+"/"+response.longitude+"/forecast/hourly/48hour.json?units=m&language=en-US"
+//Function to call API callURLs
+function callAPI()
+{
+	 var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/"+response.latitude+"/"+response.longitude+"/forecast/hourly/48hour.json?units=m&language=en-US";
 
       request.get(callURL, {
         json: true
       },
       function (error, response, body) {
-         console.log("parsing");
-         var qobject = JSON.parse(body);
+       console.log(body)
       });
-})
-
+}
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {

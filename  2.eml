@@ -1,0 +1,160 @@
+Delivered-To: irobert@g.clemson.edu
+Received: by 10.103.136.129 with SMTP id k123csp630459vsd;
+        Thu, 9 Mar 2017 12:39:32 -0800 (PST)
+X-Received: by 10.157.17.242 with SMTP id y47mr9020454oty.52.1489091972185;
+        Thu, 09 Mar 2017 12:39:32 -0800 (PST)
+Return-Path: <kbreite@g.clemson.edu>
+Received: from mail-oi0-x231.google.com (mail-oi0-x231.google.com. [2607:f8b0:4003:c06::231])
+        by mx.google.com with ESMTPS id x26si330018otx.142.2017.03.09.12.39.32
+        for <irobert@g.clemson.edu>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 09 Mar 2017 12:39:32 -0800 (PST)
+Received-SPF: neutral (google.com: 2607:f8b0:4003:c06::231 is neither permitted nor denied by best guess record for domain of kbreite@g.clemson.edu) client-ip=2607:f8b0:4003:c06::231;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@g-clemson-edu.20150623.gappssmtp.com;
+       spf=neutral (google.com: 2607:f8b0:4003:c06::231 is neither permitted nor denied by best guess record for domain of kbreite@g.clemson.edu) smtp.mailfrom=kbreite@g.clemson.edu
+Received: by mail-oi0-x231.google.com with SMTP id m124so42335579oig.1
+        for <irobert@g.clemson.edu>; Thu, 09 Mar 2017 12:39:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=g-clemson-edu.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=HL/PzYXN/kf2jKdXhSFO7L7M1MZf8LrCtR3ZG87HNPc=;
+        b=i1TUf1vm1jAjv1Ecq7B1v5fQ3WksR+Hl9pONdzZGIPay1yijjXLoFXkN/G1jJQVwT4
+         nR9+R3Sc5hTZonAzsVDXqaq3u63+q+Ug2BWpYNPP0XdH2/cBBhtjyGl0nz6QZG3gUR1Z
+         J3aTNS0MQCqIXRtGYv9Q5KH62bpo7E6XQYYcnVPhSeF5cZaetPrGMy5AAwjP5MB+b4Kn
+         jdY6VVoQAzHPomjh+d5chQMM0iU+hYvElj1yj1YT8ikytZJgk2IfXehlu34DoFBMXRm5
+         R7IP3zANei3zAsUmYbNBAYsSjn4GqdD+lpuiQcd8J/EhLTInTqdkMuH0EoOaQW6VYKqU
+         9EEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=HL/PzYXN/kf2jKdXhSFO7L7M1MZf8LrCtR3ZG87HNPc=;
+        b=IkvNXGgSxzLlmUXFBjfj402P4YJBELQsE5OjerXbBeOHGzoyTsBiKyGZjy2rtey9Yd
+         UseedfNl6rVY9cljhLH67X9c5P6gHgSS+5a4UDJRc4I3D9Q/0AAOf8S6qyG2AGqvB2xE
+         5p89F4/vlwa9xp50K/3vLXZIIIa57MqAmhS9zT9dgtYxhyFIPjd+L6UOzFEVZuOY8bTA
+         jbbfnmUT97eDNVdju4CEKD/gQ4mlB8u9Rr/DdVeHPdM8i/eVeC9SWAPLESWxitKfiizN
+         edfVCH4j8BtuaBVrlfNZt4KifimtgwpSHmb1MK2EEMBKRgZTaEHJa5vaV3VAP96K+5Cw
+         qrqg==
+X-Gm-Message-State: AMke39nrVRKv7IwWgCJWWbAluJXSMbbxElaxPVr4bwBETmFtafp55hNutUTdIhaioGjV99ZsHL/EoWtoYspiRkehgH0=
+X-Received: by 10.202.50.7 with SMTP id y7mr8111279oiy.111.1489091971677; Thu,
+ 09 Mar 2017 12:39:31 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.157.6.230 with HTTP; Thu, 9 Mar 2017 12:39:31 -0800 (PST)
+From: Kevin Breitenother <kbreite@g.clemson.edu>
+Date: Thu, 9 Mar 2017 15:39:31 -0500
+Message-ID: <CAFFMa3BvgH-Qb8UgFDRrdYu1XzXiSO5-BS-OGGxouwPGv_fw=Q@mail.gmail.com>
+Subject: 
+To: irobert@g.clemson.edu
+Content-Type: multipart/alternative; boundary=001a113caa3c0295a6054a523e11
+
+--001a113caa3c0295a6054a523e11
+Content-Type: text/plain; charset=UTF-8
+
+/*eslint-env node*/
+
+//------------------------------------------------------------------------------
+// node.js starter application for Bluemix
+//------------------------------------------------------------------------------
+
+// This application uses express as its web server
+// for more info, see: http://expressjs.com
+var express = require('express');
+  request = require('request'),
+
+_ = require('lodash');
+// cfenv provides access to your Cloud Foundry environment
+// for more info, see: https://www.npmjs.com/package/cfenv
+var cfenv = require('cfenv');
+
+// create a new express server
+var app = express();
+
+// serve the files out of ./public as our main files
+app.use(express.static(__dirname + '/public'));
+
+// get the app environment from Cloud Foundry
+var appEnv = cfenv.getAppEnv();
+
+
+app.get('/process_get', function (req, res) {
+   // Prepare output in JSON format
+   response = {
+      latitude:req.query.latitude,
+      longitude:req.query.longitude
+      //add a text box for setting the timer
+     };
+callAPI();
+setTimeout(timer, 7200000);
+
+
+})
+
+//Function to call API callURLs
+function callAPI()
+{
+var callURL = "
+https://bb137022-5302-4ad0-bcca-d135aad195d4:MXSR7lKExz@twcservice.mybluemix.net/api/weather/v1/geocode/
+"+response.latitude+"/"+response.longitude+"/forecast/hourly/48hour.json?units=m&language=en-US";
+
+      request.get(callURL, {
+        json: true
+      },
+      function (error, response, body) {
+       console.log(body)
+      });
+}
+
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
+  // print a message when the server starts listening
+  console.log("server starting on " + appEnv.url);
+});
+
+--001a113caa3c0295a6054a523e11
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>/*eslint-env node*/</div><div><br></div><div>//------=
+------------------------------------------------------------------------</d=
+iv><div>// node.js starter application for Bluemix</div><div>//------------=
+------------------------------------------------------------------</div><di=
+v><br></div><div>// This application uses express as its web server</div><d=
+iv>// for more info, see: <a href=3D"http://expressjs.com">http://expressjs=
+.com</a></div><div>var express =3D require(&#39;express&#39;);</div><div>=
+=C2=A0 request =3D require(&#39;request&#39;),</div><div><br></div><div>_ =
+=3D require(&#39;lodash&#39;);</div><div>// cfenv provides access to your C=
+loud Foundry environment</div><div>// for more info, see: <a href=3D"https:=
+//www.npmjs.com/package/cfenv">https://www.npmjs.com/package/cfenv</a></div=
+><div>var cfenv =3D require(&#39;cfenv&#39;);</div><div><br></div><div>// c=
+reate a new express server</div><div>var app =3D express();</div><div><br><=
+/div><div>// serve the files out of ./public as our main files</div><div>ap=
+p.use(express.static(__dirname + &#39;/public&#39;));</div><div><br></div><=
+div>// get the app environment from Cloud Foundry</div><div>var appEnv =3D =
+cfenv.getAppEnv();</div><div><br></div><div><br></div><div>app.get(&#39;/pr=
+ocess_get&#39;, function (req, res) {</div><div>=C2=A0 =C2=A0// Prepare out=
+put in JSON format</div><div>=C2=A0 =C2=A0response =3D {</div><div>=C2=A0 =
+=C2=A0 =C2=A0 latitude:req.query.latitude,</div><div>=C2=A0 =C2=A0 =C2=A0 l=
+ongitude:req.query.longitude</div><div>=C2=A0 =C2=A0 =C2=A0 //add a text bo=
+x for setting the timer</div><div>=C2=A0 =C2=A0 =C2=A0};</div><div><span cl=
+ass=3D"gmail-Apple-tab-span" style=3D"white-space:pre">	</span>callAPI();</=
+div><div><span class=3D"gmail-Apple-tab-span" style=3D"white-space:pre">	</=
+span>setTimeout(timer, 7200000);</div><div>=C2=A0 =C2=A0 =C2=A0=C2=A0</div>=
+<div>=C2=A0=C2=A0</div><div>})</div><div><br></div><div>//Function to call =
+API callURLs</div><div>function callAPI()</div><div>{</div><div><span class=
+=3D"gmail-Apple-tab-span" style=3D"white-space:pre">	</span> var callURL =
+=3D &quot;<a href=3D"https://bb137022-5302-4ad0-bcca-d135aad195d4:MXSR7lKEx=
+z@twcservice.mybluemix.net/api/weather/v1/geocode/">https://bb137022-5302-4=
+ad0-bcca-d135aad195d4:MXSR7lKExz@twcservice.mybluemix.net/api/weather/v1/ge=
+ocode/</a>&quot;+response.latitude+&quot;/&quot;+response.longitude+&quot;/=
+forecast/hourly/48hour.json?units=3Dm&amp;language=3Den-US&quot;;</div><div=
+><br></div><div>=C2=A0 =C2=A0 =C2=A0 request.get(callURL, {</div><div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 json: true</div><div>=C2=A0 =C2=A0 =C2=A0 },</div>=
+<div>=C2=A0 =C2=A0 =C2=A0 function (error, response, body) {</div><div>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0console.log(body)</div><div>=C2=A0 =C2=A0 =C2=A0 })=
+;</div><div>}</div><div><br></div><div>// start server on the specified por=
+t and binding host</div><div>app.listen(appEnv.port, &#39;0.0.0.0&#39;, fun=
+ction() {</div><div>=C2=A0 // print a message when the server starts listen=
+ing</div><div>=C2=A0 console.log(&quot;server starting on &quot; + appEnv.u=
+rl);</div><div>});</div></div>
+
+--001a113caa3c0295a6054a523e11--
