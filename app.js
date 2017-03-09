@@ -27,7 +27,7 @@ var appEnv = cfenv.getAppEnv();
 
 function timer()
 {
-	console.log("<<<<<< Timeout! >>>>>>");
+	callAPI();
 }
 
 
