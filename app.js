@@ -24,6 +24,12 @@ app.use(express.static(__dirname + '/public'));
 var appEnv = cfenv.getAppEnv();
 
 
+function timer()
+{
+	console.log("<<<<<< Timeout! >>>>>>");
+}
+
+
 app.get('/process_get', function (req, res) {
    // Prepare output in JSON format
    response = {
