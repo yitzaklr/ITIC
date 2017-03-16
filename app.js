@@ -24,17 +24,11 @@ app.use(express.static(__dirname + '/public'));
 var appEnv = cfenv.getAppEnv();
 
 
-
-function timer()
-{
-	callAPI();
-}
-
-
-
 app.get('/process_get', function (req, res) {
    // Prepare output in JSON format
    response = {
+      latitude:req.query.latitude,
+      longitude:req.query.longitude
       //add a text box for setting the timer
      };
 	callAPI();
@@ -46,9 +40,22 @@ app.get('/process_get', function (req, res) {
 //Function to call API callURLs
 function callAPI()
 {
-	 var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/40.7831/-73.9712/forecast/hourly/48hour.json?units=m&language=en-US";
+	 var callURL = "https://bb137022-5302-4ad0-bcca-d135aad195d4:MXSR7lKExz@twcservice.mybluemix.net/api/weather/v1/geocode/"+response.latitude+"/"+response.longitude+"/forecast/hourly/48hour.json?units=m&language=en-US";
 
       request.get(callURL, {
+        json: true
+      },
+      function (error, response, body) {
+       console.log(body)
+      });
+}
+ 
+function callBingAPI()
+{
+	var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484/type=1,2,11/key=mGujABWbtbnV1rXYgUqK~j4P61NUO_FBaAoMwqDrYKw~AoKW6cX1AZL5aDWEPM1qDLlypJtwYItN2qA6daPd8xprscar6ng0LBzBzMlt9tz4
+"
+
+      request.get(BingCallURL, {
         json: true
       },
       function (error, response, body) {
