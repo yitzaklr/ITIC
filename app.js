@@ -76,8 +76,9 @@ function callBingAPI()
         json: true
       },
          function (error, response, body) {
-          console.log(error)
-          console.log(response)
-          console.log(body)
+        //  console.log(error)
+        //  console.log(response)
+          console.log(JSON.stringify(body))
+          
       });
 }
