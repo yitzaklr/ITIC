@@ -55,7 +55,7 @@ function callAPI()
         json: true
       },
       function (error, response, body) {
-       console.log(body)
+    //   console.log(body)
       });
 }
 
@@ -69,14 +69,15 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 function callBingAPI()
 {
 	  console.log("--------------BING API CALL-------------------------");
-      var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?severity=1,2,3,4&type=1,2,3,4,5,6,7,8,9,10?key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
+      var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?severity=1,2,3,4&type=1,2,3,4,5,6,7,8,9,10&key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
+//      var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?severity=1,2,3,4&type=1,2,3,4,5,6,7,8,9,10&key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
       
       request.get( BingCallURL, {
         json: true
       },
          function (error, response, body) {
-          console.log(error)
-          console.log(response)
+        //  console.log(error)
+          //console.log(response)
           console.log(body)
       });
 }
