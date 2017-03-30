@@ -78,7 +78,12 @@ function callBingAPI()
          function (error, response, body) {
         //  console.log(error)
         //  console.log(response)
-          console.log(JSON.stringify(body))
-          
+          var data=JSON.parse(body)
+          int size=data.resourceSets.estimatedTotal
+          int n=0
+          for (i in data.resourceSets.resources) {
+          		console.log('Incident ', n)
+          		console.log(i)
+          }
       });
 }
