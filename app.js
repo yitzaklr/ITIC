@@ -40,7 +40,7 @@ app.get('/process_get', function (req, res) {
      };
 	callAPI();
 	callBingAPI();
-	setTimeout(timer, 7200000);
+	setTimeout(timer, 7200);
       
   
 })
@@ -78,7 +78,7 @@ function callBingAPI()
          function (error, response, body) {
         //  console.log(error)
         //  console.log(response)
-          var data=JSON.parse(body)
+          var data=body
           var size=data.resourceSets.estimatedTotal
           var n=0
           for (i in data.resourceSets.resources) {
