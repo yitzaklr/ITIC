@@ -83,7 +83,9 @@ function callBingAPI()
           var n=0
           for (i in data.resourceSets.resources) {
           		console.log('Incident ', n)
-          		console.log(i)
+          		console.log(JSON.stringify(i))
+          		n=n+1
           }
+          console.log()
       });
 }
