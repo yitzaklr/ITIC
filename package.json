@@ -9,8 +9,7 @@
 		"express": "4.13.x",
 		"cfenv": "1.0.x",
 		"request": "2.x.x",
-		"lodash": "1.x.x",
-		"json": "9.x.x"
+		"lodash": "1.x.x"
 	},
 	"repository": {},
 	"engines": {
