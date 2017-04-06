@@ -92,7 +92,9 @@ function callAPI()
         json: true
       },
       function (error, response, body) {
-      	var fore=body.metadata.forecasts;
+      	console.log(JSON.stringify(body.metadata))
+      	console.log(JSON.stringify(body.metadata.forecasts))
+      	var fore=body.metadata.forecasts
       	for (var n=0;n<fore.length;n++)
       	{
       		var temp=fore[n].temp
