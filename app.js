@@ -25,6 +25,32 @@ var appEnv = cfenv.getAppEnv();
 
 
 
+var config = {
+    "org" : "7s51sp",
+    "id" : "123321123321",
+    "domain": "internetofthings.ibmcloud.com",
+    "type" : "ITIC",
+    "auth-method" : "token",
+    "auth-token" : "clemson2017"
+};
+var deviceClient = new Client.IotfDevice(config);
+
+deviceClient.connect();
+deviceClient.on('connect', function () {
+
+    console.log("Device Connected")
+
+
+
+});
+deviceClient.on("error", function (err) {
+    console.log("Error : **************************************************************************************************************************************************"+err);
+});
+
+
+
+
+
 function timer()
 {
 	callAPI();
@@ -38,16 +64,25 @@ app.get('/process_get', function (req, res) {
    response = {
       //add a text box for setting the timer
      };
-	callAPI();
-	callBingAPI();
+	callAPI()
+	callBingAPI()
+	
+	
+	
 	setTimeout(timer, 7200000);
       
   
 })
 
+
+
+
+
 //Function to call API callURLs
 function callAPI()
 {
+	
+	//var weather_data=new Array()
 	console.log("-----------------------WEATHER API-------------------------");
 	 var callURL = "https://b10828d4-199b-478b-af73-aeec0464a25b:fVtgmUGHDl@twcservice.mybluemix.net/api/weather/v1/geocode/40.7831/-73.9712/forecast/hourly/48hour.json?units=m&language=en-US";
 
@@ -55,8 +90,18 @@ function callAPI()
         json: true
       },
       function (error, response, body) {
-    //   console.log(body)
+      	var fore=body.metadata.forecasts;
+      	for (var n=0;n<fore.length;n++)
+      	{
+      		var temp=fore[n].temp
+      		var severity=fore[n].severity
+      		var precip=fore[n].precip_type
+      		
+      		deviceClient.publish("status","json",'{"d":{"type" : "weather", "time" : '+fore[n].fcst_valid_local+',"severity" : '+severity +',"temp" : '+temp+',"precip" : '+precip+'}}',1)
+      		//weather_data.push({fore[n].fcst_valid_local,severity,temp,precip}
+      	}
       });
+     // return weather_data;
 }
 
 // start server on the specified port and binding host
@@ -68,6 +113,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 function callBingAPI()
 {
+	  //var traffic_data=new Array()
 	  console.log("--------------BING API CALL-------------------------");
       var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?severity=1,2,3,4&type=1,2,3,4,5,6,7,8,9,10&key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
       
@@ -90,9 +136,15 @@ function callBingAPI()
           		var textLocation=res[i].description //ex: "between 11th street and bank street"
           		
           		var severity=res[i].severity
+          		var construction=res[i].description.search("Construction")
           		
+          		
+      			deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"construction" : '+construction+'}}',1)
+          		
+          		//traffic_data.push(res[i].start,severity,construction)
           		//etc
           }
           console.log()
       });
+     // return traffic_data;
 }
