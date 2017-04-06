@@ -70,7 +70,6 @@ function callBingAPI()
 {
 	  console.log("--------------BING API CALL-------------------------");
       var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?severity=1,2,3,4&type=1,2,3,4,5,6,7,8,9,10&key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
-//      var BingCallURL = "https://dev.virtualearth.net/REST/v1/Traffic/Incidents/40.712019,-74.011202,40.802325,-73.962484?key=UY6YnkP3hKrt58WiP94T~zG2zZWIacPxE5Gn5duy68A~AmUofFBps_4577biKIKW0bT_FPwgEcihv-_Nc8_tP21wZSLKz_fMeTLXmP0U3nNn";
       
       request.get( BingCallURL, {
         json: true
@@ -83,6 +82,16 @@ function callBingAPI()
           for (var i=0; i < res.length; i++) {
           		console.log('Incident ', i)
           		console.log(JSON.stringify(res[i]))
+          		
+          		var topCorner = res[i].point.coordinates//array size 2 of [lat,long] 
+          		var botCorner = res[i].toPoint.coordinates
+          		var center = [ (topCorner[0]+botCorner[0])/2.0 , (topCorner[1]+botCorner[1])/2.0 ]
+          		
+          		var textLocation=res[i].description //ex: "between 11th street and bank street"
+          		
+          		var severity=res[i].severity
+          		
+          		//etc
           }
           console.log()
       });
