@@ -13,6 +13,7 @@ _ = require('lodash');
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
+var Client = require('ibmiotf');
 
 // create a new express server
 var app = express();
@@ -61,6 +62,7 @@ function timer()
 
 app.get('/process_get', function (req, res) {
    // Prepare output in JSON format
+   
    response = {
       //add a text box for setting the timer
      };
