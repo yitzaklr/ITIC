@@ -66,8 +66,8 @@ app.get('/process_get', function (req, res) {
    response = {
       //add a text box for setting the timer
      };
-	callAPI()
-	callBingAPI()
+	callAPI();
+	callBingAPI();
 	
 	
 	
@@ -92,9 +92,7 @@ function callAPI()
         json: true
       },
       function (error, response, body) {
-      	console.log(JSON.stringify(body.metadata))
-      	console.log(JSON.stringify(body.metadata.forecasts))
-      	var fore=body.metadata.forecasts
+      	var fore=body.forecasts
       	for (var n=0;n<fore.length;n++)
       	{
       		var temp=fore[n].temp
@@ -130,20 +128,22 @@ function callBingAPI()
           var res=data.resourceSets[0].resources;
           console.log("size",size)
           for (var i=0; i < res.length; i++) {
-          		console.log('Incident ', i)
+          //		console.log('Incident ', i)
           		console.log(JSON.stringify(res[i]))
-          		console.log('logged')
+          //		console.log('logged')
           		var topCorner = res[i].point.coordinates//array size 2 of [lat,long] 
           		var botCorner = res[i].toPoint.coordinates
-          		console.log('corners read')
+         // 		console.log('corners read')
           		var center = [ (topCorner[0]+botCorner[0])/2.0 , (topCorner[1]+botCorner[1])/2.0 ]
-          		console.log('center found')
+         // 		console.log('center found')
           		var textLocation=res[i].description //ex: "between 11th street and bank street"
-          		console.log('described')
+         // 		console.log('described')
           		var severity=res[i].severity
-          		console.log('sev found')
+         // 		console.log('sev found')
           		var construction=res[i].description.search("Construction")
-			    console.log('construction determined')
+          		if (construction > 0)
+          			construction = 1
+		//	    console.log('construction determined')
           		
       			deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"construction" : '+construction+'}}',1)
           		console.log('published')
