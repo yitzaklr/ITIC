@@ -32,7 +32,8 @@ var config = {
     "domain": "internetofthings.ibmcloud.com",
     "type" : "ITIC",
     "auth-method" : "token",
-    "auth-token" : "tu0IWDPdDIyq2)a5J&"
+//    "auth-token" : "tu0IWDPdDIyq2)a5J&"
+	"auth-token" : "clemson2017"
 };
 var deviceClient = new Client.IotfDevice(config);
 
