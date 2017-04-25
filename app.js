@@ -99,7 +99,7 @@ function callAPI()
       		var severity=fore[n].severity
       		var precip=fore[n].precip_type
       		
-      		deviceClient.publish("status","json",'{"d":{"type" : "weather", "time" : '+fore[n].fcst_valid_local+',"severity" : '+severity +',"temp" : '+temp+',"precip" : '+precip+'}}',1)
+      		deviceClient.publish("status","json",'{"d":{"type" : "weather", "time" : \"'+fore[n].fcst_valid_local+'\","severity" : '+severity +',"temp" : '+temp+',"precip" : '+precip+'}}',1)
       		//weather_data.push({fore[n].fcst_valid_local,severity,temp,precip}
       	}
       });
@@ -139,13 +139,13 @@ function callBingAPI()
       			var type=res[i].type
           		if (typeNames[type]==="_")
           		{
-          			console.log("type filtered; type="+type+"; typename="+typeNames[type]);
+          			console.log("type filtered; type=",type,"; typename=",typeNames[type]);
           		}
           		else
 	          	{	
-	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
+	          		console.log("published; type=",typeNames[type])
+	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : \"'+res[i].start+ '\","severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
           		}
-          		console.log('published')
           }
           console.log()
       });
