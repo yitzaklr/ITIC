@@ -112,7 +112,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
-var typeNames = ["Accident","Congestion","Disabled Vehicle","_","_","_","_","Road Hazard","Construction","_","_"]
+var typeNames = ["0","Accident","Congestion","Disabled Vehicle","_","_","_","_","Road Hazard","Construction","_","_"];
 
 function callBingAPI()
 {
