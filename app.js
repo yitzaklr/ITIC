@@ -54,8 +54,10 @@ deviceClient.on("error", function (err) {
 
 function timer()
 {
+	console.log("timer---------------------")
 	callAPI();
 	callBingAPI();
+	console.log("end timer=================")
 }
 
 
@@ -73,7 +75,7 @@ app.get('/process_get', function (req, res) {
 	
 	setTimeout(timer, 15000);
       
-  
+    console.log("{{{{{{{{{{{{{{{ End of app.get }}}}}}}}}}}}}}}");
 })
 
 
@@ -147,7 +149,6 @@ function callBingAPI()
 	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : \"'+res[i].start+ '\","severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
           		}
           }
-          console.log()
+          console.log("===========BING Completed======================");
       });
-     // return traffic_data;
 }
