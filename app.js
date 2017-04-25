@@ -138,7 +138,9 @@ function callBingAPI()
           		var duration = res[i].end-res[i].start
       			var type=res[i].type
           		if (typeNames[type]==="_")
-          		{}
+          		{
+          			console.log("type filtered; type="+type+"; typename="+typeNames[type]);
+          		}
           		else
 	          	{	
 	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
