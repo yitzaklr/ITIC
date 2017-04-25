@@ -71,7 +71,7 @@ app.get('/process_get', function (req, res) {
 	
 	
 	
-	setTimeout(timer, 10000);
+	setTimeout(timer, 15000);
       
   
 })
@@ -112,6 +112,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
   console.log("server starting on " + appEnv.url);
 });
 
+var typeNames = ["Accident","Congestion","Disabled Vehicle","_","_","_","_","Road Hazard","Construction","_","_"]
 
 function callBingAPI()
 {
@@ -134,13 +135,14 @@ function callBingAPI()
           		var center = [ (topCorner[0]+botCorner[0])/2.0 , (topCorner[1]+botCorner[1])/2.0 ]
           		var textLocation=res[i].description //ex: "between 11th street and bank street"
           		var severity=res[i].severity
-          		var construction=res[i].description.search("Construction")
-          		if (construction > 0)
-          			construction = 1
-          		else 
-          			construction = 0
           		var duration = res[i].end-res[i].start
-      			deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"construction" : '+construction+',duration:'+duration+'}}',1)
+      			var type=res[i].type
+          		if (typeNames[type]==="_")
+          		{}
+          		else
+	          	{	
+	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : '+res[i].start+ ',"severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
+          		}
           		console.log('published')
           }
           console.log()
