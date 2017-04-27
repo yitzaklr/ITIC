@@ -136,7 +136,7 @@ function callBingAPI()
           		var severity=res[i].severity
           		var duration = res[i].end-res[i].start
       			var type=res[i].type
-      			var date=new Date(res[i].start)
+      			var date=new Date(+res[i].start)
           		if (typeNames[type]==="_")
           		{
           			console.log("type filtered; type=",type,"; typename=",typeNames[type]);
@@ -144,7 +144,7 @@ function callBingAPI()
           		else
 	          	{	
 	          		console.log("published; type=",typeNames[type])
-	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : \"'+date.toDateString()+'\","severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
+	          		deviceClient.publish("status","json",'{"d":{"type" : "traffic", "time" : \"'+date.toDateString() +'\","severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}',1)
           		}
           }
           console.log("===========BING Completed======================");
