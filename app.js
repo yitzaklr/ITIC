@@ -136,7 +136,10 @@ function callBingAPI()
           		var severity=res[i].severity
           		var duration = res[i].end-res[i].start
       			var type=res[i].type
-      			var date=new Date(parseInt(res[i].start.replace(/\D/g,''),10))
+      			var datesec=parseInt(res[i].start.replace(/\D/g,''),10)
+      			console.log("datesec= ",datesec)
+      			var date=new Date(datesec)
+      			console.log("date=",date)
           		if (typeNames[type]==="_")
           		{
           			console.log("type filtered; type=",type,"; typename=",typeNames[type]);
