@@ -137,9 +137,9 @@ function callBingAPI()
           		var duration = res[i].end-res[i].start
       			var type=res[i].type
       			var datesec=parseInt(res[i].start.replace(/\D/g,''),10)
-      			console.log("datesec= ",datesec)
+      			console.log("datesec=[",datesec,"]")
       			var date=new Date(datesec)
-      			console.log("date=",date)
+      			console.log("date=[",date.toISOString(),']')
           		if (typeNames[type]==="_")
           		{
           			console.log("type filtered; type=",type,"; typename=",typeNames[type]);
