@@ -73,7 +73,7 @@ app.get('/process_get', function (req, res) {
 	
 	
 	
-	setTimeout(timer, 15000);
+	setInterval(timer, 15000);
       
     console.log("{{{{{{{{{{{{{{{ End of app.get }}}}}}}}}}}}}}}");
 })
