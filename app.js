@@ -127,9 +127,7 @@ function callBingAPI()
           var data=body
           var size=data.resourceSets[0].estimatedTotal
           var res=data.resourceSets[0].resources;
-          console.log("size",size)
           for (var i=0; i < res.length; i++) {
-          		console.log(JSON.stringify(res[i]))
           		var topCorner = res[i].point.coordinates//array size 2 of [lat,long] 
           		var botCorner = res[i].toPoint.coordinates
           		var center = [ (topCorner[0]+botCorner[0])/2.0 , (topCorner[1]+botCorner[1])/2.0 ]
@@ -147,7 +145,7 @@ function callBingAPI()
           		}
           		else
 	          	{	
-	          		var transmit='{"d":{"type" : "traffic", "time" : \"'+date.toISOString() +'\","severity" : '+severity +',"type" : '+typeNames[type]+',duration:'+duration+'}}'
+	          		var transmit='{"d":{"type" : "traffic", "time" : "'+date.toISOString() +'","severity" : '+severity +',"type" : "'+typeNames[type]+'","duration":'+duration+'}}'
 	          		console.log("transmit traffic ",transmit)
 	          		deviceClient.publish("status","json",trasmit,1)
           		}
