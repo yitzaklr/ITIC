@@ -65,6 +65,12 @@ function timer()
 app.get('/process_get', function (req, res) {
    // Prepare output in JSON format
    
+   
+   response = {
+      //add a text box for setting the timer
+     };
+
+   
 	callAPI();
 	callBingAPI();
 	
@@ -147,7 +153,7 @@ function callBingAPI()
 	          	{	
 	          		var transmit='{"d":{"type" : "traffic", "time" : "'+date.toISOString() +'","severity" : '+severity +',"type" : "'+typeNames[type]+'","duration":'+duration+'}}'
 	          		console.log("transmit traffic ",transmit)
-	          		deviceClient.publish("status","json",trasmit,1)
+	          		deviceClient.publish("status","json",transmit,1)
           		}
           }
           console.log("===========BING Completed======================");
